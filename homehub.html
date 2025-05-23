@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeHub - Empowering Kids through Tech, Mentorship, and Faith</title>
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #C9A227;
+            --purple: #6A0DAD;
+            --dark-purple: #4B0082;
+            --light-purple: #9B59B6;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--purple);
+            color: var(--gold);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--white);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--white);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(106, 13, 173, 0.8), rgba(106, 13, 173, 0.8)), url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--gold);
+            color: var(--purple);
+            border: 2px solid var(--gold);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--gold);
+            color: var(--purple);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--purple);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--gold);
+            margin: 1rem auto;
+        }
+        
+        .section-dark {
+            background-color: var(--purple);
+            color: var(--white);
+        }
+        
+        .section-dark .section-title {
+            color: var(--gold);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-video {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--light-purple);
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            border-radius: 5px;
+        }
+        
+        /* Who It's For Section */
+        .audience-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .audience-card {
+            background-color: var(--white);
+            color: var(--dark-gray);
+            border-radius: 5px;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border-top: 5px solid var(--gold);
+        }
+        
+        .audience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .audience-card h3 {
+            color: var(--purple);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        /* Curriculum Section */
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .curriculum-item {
+            background-color: var(--gold);
+            color: var(--purple);
+            padding: 2rem;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .curriculum-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .curriculum-item i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--purple);
+        }
+        
+        .curriculum-item h3 {
+            margin-bottom: 1rem;
+        }
+        
+        /* How It Works Section */
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            counter-reset: step-counter;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            position: relative;
+            padding: 2rem 1.5rem;
+            background-color: var(--white);
+            color: var(--dark-gray);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--purple);
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .step:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: var(--purple);
+            color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--purple), var(--dark-purple));
+            color: var(--white);
+        }
+        
+        .cta-section .section-title {
+            color: var(--gold);
+        }
+        
+        .cta-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .cta-btn {
+            background-color: var(--gold);
+            color: var(--purple);
+            padding: 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: block;
+        }
+        
+        .cta-btn:hover {
+            background-color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: space-between;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--purple);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        .submit-btn {
+            background-color: var(--purple);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--dark-purple);
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            color: var(--purple);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-details p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            margin-right: 1rem;
+            color: var(--purple);
+            font-size: 1.2rem;
+            width: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            background-color: var(--purple);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--dark-purple);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--purple);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            color: var(--light-purple);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--purple);
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">Home<span>Hub</span></a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+            <ul id="navMenu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#who">Who It's For</a></li>
+                <li><a href="#curriculum">Curriculum</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="btn btn-secondary">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Empowering Kids through Tech, Mentorship, and Faith</h1>
+        <p>HomeHub provides a transformative after-school experience combining technology education, mentorship, and spiritual growth in the comfort of residential communities.</p>
+        <div class="cta-buttons">
+            <a href="#" class="btn btn-primary">Join HomeHub Today</a>
+            <a href="#" class="btn btn-secondary">Partner with Us</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-dark">
+        <h2 class="section-title">About HomeHub</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>What is HomeHub?</h3>
+                <p>HomeHub is an innovative after-school program that brings technology education, mentorship, and faith-based learning directly to residential communities. We partner with real estate developers and property managers to establish dedicated learning spaces within residential estates.</p>
+                
+                <h3>Our Mission</h3>
+                <p>To empower the next generation with technological skills, mentorship, and spiritual guidance in accessible community spaces.</p>
+                
+                <h3>Our Vision</h3>
+                <p>A world where every child has access to quality tech education and mentorship within their living community, fostering both intellectual and spiritual growth.</p>
+            </div>
+            <div class="about-video">
+                <i class="fas fa-play-circle" style="font-size: 4rem; color: var(--gold);"></i>
+                <p>Testimonial Video</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who It's For Section -->
+    <section id="who">
+        <h2 class="section-title">Who It's For</h2>
+        <div class="audience-cards">
+            <div class="audience-card">
+                <h3>For Parents</h3>
+                <p>Provide your children with convenient after-school learning and spiritual growth opportunities right in your residential community. No more long commutes to extracurricular activities.</p>
+            </div>
+            <div class="audience-card">
+                <h3>For Real Estates</h3>
+                <p>Enhance your property value by offering this unique amenity that attracts families and creates a sense of community among residents.</p>
+            </div>
+            <div class="audience-card">
+                <h3>For Trainers</h3>
+                <p>Join our network of mentors and trainers to share your knowledge, inspire young minds, and grow professionally in a rewarding environment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section id="curriculum" class="section-dark">
+        <h2 class="section-title">Curriculum Highlights</h2>
+        <div class="curriculum-grid">
+            <div class="curriculum-item">
+                <i class="fas fa-code"></i>
+                <h3>Coding</h3>
+                <p>Learn programming fundamentals through fun, interactive projects using languages like Scratch, Python, and JavaScript.</p>
+            </div>
+            <div class="curriculum-item">
+                <i class="fas fa-flask"></i>
+                <h3>STEM Projects</h3>
+                <p>Hands-on science, technology, engineering, and math projects that spark creativity and problem-solving skills.</p>
+            </div>
+            <div class="curriculum-item">
+                <i class="fas fa-hands-helping"></i>
+                <h3>Mentorship</h3>
+                <p>One-on-one guidance from experienced professionals who provide career insights and personal development support.</p>
+            </div>
+            <div class="curriculum-item">
+                <i class="fas fa-bible"></i>
+                <h3>Bible Sessions</h3>
+                <p>Weekly faith-based discussions that help children develop strong moral values and spiritual foundation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <h3>Setup in Your Estate</h3>
+                <p>We work with your residential community to establish a dedicated HomeHub learning space equipped with all necessary technology and resources.</p>
+            </div>
+            <div class="step">
+                <h3>Kids Join and Learn</h3>
+                <p>Children in the community enroll in the program and begin their journey of tech learning and personal growth.</p>
+            </div>
+            <div class="step">
+                <h3>See Them Grow</h3>
+                <p>Witness the transformation as children develop new skills, confidence, and spiritual awareness through our comprehensive program.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 class="section-title">Ready to Get Involved?</h2>
+        <div class="cta-buttons-grid">
+            <a href="#" class="cta-btn">Apply as a Partner Estate</a>
+            <a href="#" class="cta-btn">Register Your Child</a>
+            <a href="#" class="cta-btn">Become a Mentor</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option value="general">General Inquiry</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                            <option value="enrollment">Child Enrollment</option>
+                            <option value="mentorship">Mentorship Program</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <div class="contact-details">
+                    <p><i class="fas fa-map-marker-alt"></i> street7 mwiki deliverance road , Nairobi  City</p>
+                    <p><i class="fas fa-phone"></i> +254701408764</p>
+                    <p><i class="fas fa-envelope"></i> timothyngugi26@gmail.com</p>
+                </div>
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#who">Who It's For</a>
+            <a href="#curriculum">Curriculum</a>
+            <a href="#how">How It Works</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <p class="copyright">© 2023 HomeHub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
